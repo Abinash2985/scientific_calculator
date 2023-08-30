@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY Calculator</title>
+</head>
+
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-image: url(https://assets-global.website-files.com/6009ec8cda7f305645c9d91b/6151cdfe606aa08dbbc6965c_color-combinations_bloghero-p-2000.jpeg);
+
+        }
+
+        input {
+            border-radius: 10px;
+
+        }
+
+        .calculator {
+            width: 300px;
+            margin: 0 auto;
+            border: 2px solid greenyellow;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        #result {
+            width: 93%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        button {
+            margin: 3px;
+            height: 50px;
+            width: 100px;
+            padding: 5px;
+            font-size: 16px;
+            border: 2px solid gray;
+            border-radius: 10px;
+
+        }
+
+        button:last-child {
+            width: 100%;
+        }
+    </style>
+    <div class="calculator">
+        <input type="text" value="" id="result">
+        <div class="button-row">
+            <button onclick="deleteCharacter()">C</button>
+            <button onclick="deleteLastChar()">&Larr;</button>
+            <button onclick="appendCharacter('(')">(</button>
+            <button onclick="appendCharacter(')')">)</button>
+            <button onclick="appendCharacter('Math.in(')">In</button>
+
+
+        </div>
+        <div class="button-row">
+            <button onclick="appendCharacter('Math.sin(')">Sin</button>
+            <button onclick="appendCharacter('Math.cos(')">Cos</button>
+            <button onclick="appendCharacter('Math.tan(')">Tan</button>
+            <button onclick="appendCharacter('Math.log(')">log</button>
+            <button onclick="appendCharacter('Math.PI')">π</button>
+
+        </div>
+        <div class="button-row">
+            <button onclick="appendCharacter('Math.asin(')">Cosec</button>
+            <button onclick="appendCharacter('Math.acos(')">Sce</button>
+            <button onclick="appendCharacter('Math.atan(')">Cot</button>
+            <button onclick="appendCharacter('Math.sqrt(')">√</button>
+            <button onclick="appendCharacter('**')">^</button>
+
+        </div>
+        <div class="button-row">
+            <button onclick="appendCharacter('7')">7</button>
+            <button onclick="appendCharacter('8')">8</button>
+            <button onclick="appendCharacter('9')">9</button>
+            <button onclick="appendCharacter('/')">/</button>
+            <button onclick="appendCharacter('-')">-</button>
+
+        </div>
+        <div class="button-row">
+            <button onclick="appendCharacter('4')">4</button>
+            <button onclick="appendCharacter('5')">5</button>
+            <button onclick="appendCharacter('6')">6</button>
+            <button onclick="appendCharacter('*')">*</button>
+            <button onclick="appendCharacter('%')">%</button>
+
+        </div>
+        <div class="button-row">
+            <button onclick="appendCharacter('1')">1</button>
+            <button onclick="appendCharacter('2')">2</button>
+            <button onclick="appendCharacter('#')">3</button>
+            <button onclick="appendCharacter('+')">+</button>
+            <button onclick="appendCharacter('$')">$</button>
+
+        </div>
+        <div class="button-row">
+            <button onclick="appendCharacter('0')">0</button>
+            <button onclick="appendCharacter('.')">.</button>
+            <button onclick="CalculateResult()">=</button>
+
+
+        </div>
+    </div>
+
+    <script>
+        let sound = new Audio("ting.mp3")
+        function CalculateResult() {
+            var result = document.getElementById("result");
+            var expression = result.value;
+
+            try {
+                var calculatedResult = eval(expression);
+                result.value = calculatedResult;
+            } catch (error) {
+                alert("Invalid expression!");
+                result.value = "";
+
+            }
+        }
+        function appendCharacter(character) {
+            sound.play();
+            var result = document.getElementById("result");
+            result.value = result.value + character;
+        }
+        function deleteCharacter(character) {
+            var result = document.getElementById("result");
+            result.value = "";
+        }
+        function deleteLastChar(character) {
+            var result = document.getElementById("result");
+            var curr = result.value
+            result.value = curr.slice(0, -1);
+        }
+    </script>
+</body>
+
+</html>
